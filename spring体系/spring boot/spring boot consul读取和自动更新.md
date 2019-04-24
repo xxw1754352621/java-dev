@@ -40,12 +40,14 @@
   
   - 重新记载consul配置的资源
   
+    ![6](https://github.com/xxw1754352621/java-dev/blob/master/img/6.png)
+    
     ```java
     org.springframework.cloud.context.refresh.ContextRefresher#refresh
     org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration#initialize
-    重新加载consul配置
+  重新加载consul配置
     ```
   
     
-  
+    
     

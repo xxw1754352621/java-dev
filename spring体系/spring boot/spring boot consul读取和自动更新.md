@@ -45,6 +45,5 @@
     ```java
     org.springframework.cloud.context.refresh.ContextRefresher#refresh
     org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration#initialize
-  重新加载consul配置
+    重新加载consul配置
     ```
-  

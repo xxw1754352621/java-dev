@@ -13,6 +13,9 @@
 
 # java基础
 
+  - 集合
+    - [ConcurrentHashMap常用的get和put方法](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/Map/ConcurrentHashMap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.md)
+
 # kafka
 
 # mongodb

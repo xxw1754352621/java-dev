@@ -4,14 +4,14 @@
   - 插入排序（直接插入，二分查找插入，希尔排序）
     - 这里采用了二分查找插入
     - 平均      最坏	   最好	     稳定性	空间复杂度
-       O(n^2)   O(n^2)	O(nlogn)	稳定	  O(1)
+    -  O(n^2)   O(n^2)	O(nlogn)	稳定	  O(1)
   - 归并排序
     - 平均	     最坏	     最好	     稳定性	空间复杂度
-      O(nlogn)	O(nlogn)	O(nlogn)	稳定	  O(n+logn)
+    -  O(nlogn)	O(nlogn)	O(nlogn)	稳定	  O(n+logn)
 - 性能
   - Timsort排序
     - 平均	     最坏	     最好	 稳定性	空间复杂度
-      O(nlogn)	O(nlogn)	O(n)	稳定	  O(n)
+    - O(nlogn)	O(nlogn)	O(n)	稳定	  O(n)
 
 ### 数组 < 32
 - 初始化数组 a .length = n     <   32  

@@ -29,5 +29,5 @@
 - 判断是否需要归并折叠（mergeCollapse）
 - 继续找下一个run，相应参数修改
 
-具体详情见：
+具体详情见：[Timsort排序.vsdx](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/Timsort%E7%AE%97%E6%B3%95.vsdx)
 

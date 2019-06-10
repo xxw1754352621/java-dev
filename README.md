@@ -31,7 +31,7 @@
 # nginx
 
 # rabbitmq
-  -[rabbitmq的存储](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/rabbitmq%E7%9A%84%E5%AD%98%E5%82%A8.pdf)
+  - [rabbitmq的存储](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/rabbitmq%E7%9A%84%E5%AD%98%E5%82%A8.pdf)
 
 # redis
 

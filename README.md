@@ -25,7 +25,7 @@
     - [ConcurrentHashMap常用的get和put方法](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/Map/ConcurrentHashMap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.md)
     
   - [线程](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B)
-    - [ConcurrentHashMap常用的get和put方法](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B/%E7%9B%91%E6%8E%A7%E4%BB%BB%E5%8A%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
+    - [监控任务的生命周期](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B/%E7%9B%91%E6%8E%A7%E4%BB%BB%E5%8A%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
 # kafka
 
 # mongodb

@@ -7,13 +7,13 @@
 
 # consul
 
-# dubbo
-
-# IDEA
-  - [plugins使用](https://github.com/xxw1754352621/java-dev/blob/master/IDEA/plugins.md)
-
 # docker
 
+# dubbo
+
+# [IDEA](https://github.com/xxw1754352621/java-dev/blob/master/IDEA)
+  - [plugins使用](https://github.com/xxw1754352621/java-dev/blob/master/IDEA/plugins.md)
+  - [破解](https://github.com/xxw1754352621/java-dev/blob/master/IDEA/crash.md)
 # haproxy
 
 # java基础

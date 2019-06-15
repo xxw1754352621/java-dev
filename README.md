@@ -35,7 +35,15 @@
 # nginx
 
 # rabbitmq
-  - [rabbitmq的存储](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/rabbitmq%E7%9A%84%E5%AD%98%E5%82%A8.pdf)
+  - [consumer](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/consumer)
+    - [消费过程](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/consumer/consume.md)
+    - [消费配置](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/consumer/properties.md)
+  - [store](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/store)
+    -  [rabbitmq的存储](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/store/persistent.md)
+  - [framework](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework)
+    - [mnesia](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework/mnesia)
+  
+  
 
 # redis
 

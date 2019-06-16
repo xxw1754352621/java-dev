@@ -1,6 +1,6 @@
-#vm_memory_high_watermark
+# vm_memory_high_watermark
 表示RabbitMQ使用内存的上限为系统内存的40%。也可以通过absolute参数制定具体可用的内存数。当RabbitMQ使用内存超过这个限制时，RabbitMQ 将对消息的发布者进行限流，直到内存占用回到正常值以内。
-#vm_memory_high_watermark_paging_ratio
+# vm_memory_high_watermark_paging_ratio
 表示当RabbitMQ达到0.4*0.75=30%，系统将对queue中的内容启用paging机制，将message等内容换页到disk 中。
 # queue_index_embed_msgs_below（4096 字节）
 嵌入到索引的消息大小限制

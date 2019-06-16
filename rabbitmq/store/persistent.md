@@ -57,6 +57,6 @@
    - 当内存紧张时触发paging，paging将大量alpha状态的消息转换为beta和gamma；如果内存依然紧张，继续将beta和gamma状态转换为delta状态。Paging是一个持续过程，涉及到大量消息的多种状态转换，所以Paging的开销较大，严重影响系统性能
 ### 2.消息消费
 读取消息的时候先根据消息的msg_id找到对应的文件，如果文件存在且未被锁住则直接打开文件，如果文件不存在或者锁住了则发请求到rabbit_msg_store处理。
-每个rabbit_queue_index从磁盘读取消息的时候至少读取一个段文件。
+每个rabbit_queue_index从磁盘读取消息的时候至少读取一个段文件。段文件包含16384条消息记录.
 
   - 参考：[rabbitmq消费端](https://github.com/xxw1754352621/java-dev/tree/master/rabbitmq/consumer/consume.md)

@@ -27,7 +27,9 @@
   - [线程](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B)
     - [监控任务的生命周期](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B/%E7%9B%91%E6%8E%A7%E4%BB%BB%E5%8A%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
 # kafka
-
+  - [consumer](https://github.com/xxw1754352621/java-dev/blob/master/kafka/consumer)
+    - [消费者](https://github.com/xxw1754352621/java-dev/blob/master/kafka/consumer/consume.md)
+    - [消费配置](https://github.com/xxw1754352621/java-dev/blob/master/kafka/consumer/config.md)
 # mongodb
 
 # mysql
@@ -41,7 +43,7 @@
   - [store](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/store)
     -  [rabbitmq的存储](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/store/persistent.md)
   - [framework](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework)
-    - [mnesia](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework/mnesia)
+    - [mnesia](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework/mnesia.md)
   
   
 

@@ -64,6 +64,18 @@ ERROR: node with name "rabbit" already running on "kaka-02"
 
 # 常用命令（省略 -n 节点操作）
 
+[Usage:
+rabbitmqctl [-n <node>] [-l] [-q] <command> [<command options>]]()
+
+General options:
+    short            | long          | description
+    -----------------|---------------|--------------------------------
+    -n <node>        | --node <node> | connect to node <node>
+    -l               | --longnames   | use long host names
+    -q               | --quiet       | suppress informational messages
+    -s               | --silent      | suppress informational messages
+                                     | and table header row
+
 - rabbitmq-server  -n rabbit1@kaka-01 -**detached** 
   - 后端运行，依次运行其他三个节点
 - rabbitmqctl  -n rabbit2@kaka-02 **stop_app**

@@ -1,4 +1,4 @@
-#[single machine](https://www.rabbitmq.com/clustering.html)
+# [single machine](https://www.rabbitmq.com/clustering.html)
 ```java
 In order to run multiple RabbitMQ nodes on a single machine, 
 it is necessary to make sure the nodes have distinct node names, 
@@ -11,7 +11,7 @@ in the File and Directory Locations guide.
 
 
 
-#设置hosts
+# 设置hosts
 ```properties
 127.0.0.1 kaka-01
 127.0.0.1 kaka-02
@@ -64,17 +64,18 @@ ERROR: node with name "rabbit" already running on "kaka-02"
 
 # 常用命令（省略 -n 节点操作）
 
-[Usage:
-rabbitmqctl [-n <node>] [-l] [-q] <command> [<command options>]]()
+Usage:
+rabbitmqctl [-n <node>] [-l] [-q] <command> [<command options>]
 
-General options:
-    short            | long          | description
-    -----------------|---------------|--------------------------------
-    -n <node>        | --node <node> | connect to node <node>
-    -l               | --longnames   | use long host names
-    -q               | --quiet       | suppress informational messages
-    -s               | --silent      | suppress informational messages
-                                     | and table header row
+General options
+
+| short            | long          | description                    |
+| -----------------|---------------|------------                    |
+| -n <node>        | --node <node> | connect to node <node>         |
+| -l               | --longnames   | use long host names            |
+| -q               | --quiet       | suppress informational messages|
+| -s               | --silent      | suppress informational messages|
+                                   
 
 - rabbitmq-server  -n rabbit1@kaka-01 -**detached** 
   - 后端运行，依次运行其他三个节点

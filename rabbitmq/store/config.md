@@ -24,3 +24,10 @@
 ### lazy_queue_explicit_gc_run_operation_threshold（1000 条）
   - 在内存压力下为延迟队列设置的值，该值可以触发垃圾回收和减少内存使用，降低该值，会降低性能，提高该值，会导致更高的内存消耗
 ### 如果生产者投递快，建议使用[延时队列](https://www.rabbitmq.com/lazy-queues.html)，他也会减低内存的使用
+
+# network
+### tcp_acceptor进程数量，接受TCP侦听器连接的Erlang进程数
+   - Number of Erlang processes that will accept connections for the TCP and TLS listeners.
+   - {num_tcp_acceptors, 10},
+   - {num_ssl_acceptors, 1},
+

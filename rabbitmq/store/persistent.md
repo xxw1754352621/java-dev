@@ -1,7 +1,7 @@
 # 进程模型
 
 - **tcp_acceptor**：负责接受客户端连接，然后为客户端连接创建rabbit_reader、rabbit_writer、rabbit_channel进程
-  - 一个服务实例一个
+  - {num_tcp_acceptors, 10}配置数量
 - **rabbit_reader**：负责解析客户端AMQP帧，然后将请求发送给rabbit_channel进程
   - 一个客户端一个
 - **rabbit_writer**：负责向客户端返回数据

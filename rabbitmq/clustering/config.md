@@ -99,3 +99,6 @@ General options
   - 注意：先停止应用（stop_app），再进行操作
 - rabbitmq-plugins enable **rabbitmq_management**
   - 启动rabbitmq管理应用（15276）
+# 启动要求
+  - 启动：磁盘节点 到 内存节点
+  - 关闭：内存节点 再到 磁盘节点

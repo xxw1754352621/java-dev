@@ -1,6 +1,24 @@
 [TOC]
 
-# 一次封锁和二段锁（加锁和解锁）
+# 一次封锁和二段锁（[加锁和解锁](https://tech.meituan.com/2014/08/20/innodb-lock.html)）
+
+一段锁可以避免死锁，mysql不采用这个的原因是，**事务**开始的时候，不知道要锁住那些数据
+
+二段锁会出现死锁，衍生出MVCC，锁兼容等
+
+| 事务                 | 加锁/解锁处理                                      |
+| :------------------- | :------------------------------------------------- |
+| begin；              |                                                    |
+| insert into test ….. | 加insert对应的锁                                   |
+| update test set…     | 加update对应的锁                                   |
+| delete from test ….  | 加delete对应的锁                                   |
+| commit;              | 事务提交时，同时释放insert、update、delete对应的锁 |
+
+```properties
+如果一个条件无法通过索引快速过滤，存储引擎层面就会将所有记录加锁后返回，再由MySQL Server层进行过滤。
+
+但在实际使用过程当中，MySQL做了一些改进，在MySQL Server过滤条件，发现不满足后，会调用unlock_row方法，把不满足条件的记录释放锁 (违背了二段锁协议的约束)。这样做，保证了最后只会持有满足条件记录上的锁，但是每条记录的加锁操作还是不能省略的。可见即使是MySQL，为了效率也是会违反规范的。（参见《高性能MySQL》中文第三版p181）
+```
 
 
 
@@ -68,12 +86,18 @@
 - 行锁（读写锁）
 - Record locks always lock index records, even if a table is defined with no indexes. For such cases, `InnoDB` creates a hidden clustered index and uses this index for record locking. See [Section 15.6.2.1, “Clustered and Secondary Indexes”](https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html).
   - 只会锁带索引的记录，即使没有显式添加索引，innodb也会创建一个隐式的聚集索引，锁住这个隐式索引的行记录
+- the row-level locks are actually index-record locks
+  - 行级锁实际上是索引记录锁
 
 # gap locks
 
-- 
+A gap lock is a lock on a gap between index records, or a lock on the gap before the first or after the last index record
 
 # next-key locks
+
+A next-key lock is a combination of a record lock on the index record and a gap lock on the gap before the index record.
+
+- 行锁防止别的事务修改或删除，GAP锁防止别的事务新增，行锁和GAP锁结合形成的的Next-Key锁共同解决了RR级别在写数据时的幻读问题。
 
 # insert intention locks
 

@@ -37,8 +37,8 @@
 - A request by `T2` for an `X` lock cannot be granted immediately.
 
   - T2事务等待T1释放`X`锁
-
-  - T2事务同时向`r`不能加`S`锁
+- T2事务同时向`r`不能加`S`锁
+- 事务隔离级别serialable，才加读锁，不然就要显式加锁（for update等）
 
 | 读写锁（T1和T2事务） | X                        | IX                 | S                  | IS                 |
 | -------------------- | ------------------------ | ------------------ | ------------------ | ------------------ |
@@ -88,22 +88,73 @@
   - 只会锁带索引的记录，即使没有显式添加索引，innodb也会创建一个隐式的聚集索引，锁住这个隐式索引的行记录
 - the row-level locks are actually index-record locks
   - 行级锁实际上是索引记录锁
+  - Innodb 中的`行锁`的实现依赖于`索引`，一旦某个加锁操作没有使用到索引，那么该锁就会退化为`表锁`。
 
 # gap locks
 
 A gap lock is a lock on a gap between index records, or a lock on the gap before the first or after the last index record
 
+- 间隙锁，索引值之间的间隙
+
 # next-key locks
 
 A next-key lock is a combination of a record lock on the index record and a gap lock on the gap before the index record.
 
-- 行锁防止别的事务修改或删除，GAP锁防止别的事务新增，行锁和GAP锁结合形成的的Next-Key锁共同解决了RR级别在写数据时的幻读问题。
+- 行锁防止别的事务修改或删除，GAP锁防止别的事务新增，行锁和GAP锁结合形成的的Next-Key锁共同解决了RR级别在**写数据**（`X锁`）时的幻读问题。
+
+- 分析，条件如下：mysql，innodb，RR，test_table（primary id，key user_id，user_name）
+
+  1. 当前行记录有user_id={3,19,30}，语句：
+
+     ```mysql
+     因为临键锁，我们先根据二级索引user_id，设定有以下数据分区
+     (negative infinity, 3],
+     (3,19],
+     (19,30],
+     (30,positive infinity);
+     ```
+
+  2.  update test_table set user_name="kaka" where user_id=19
+
+     - 命中二级索引值19，所以添加临键锁
+       - 行锁，锁住19
+       - 间隙锁，锁住(3,19]和(19,30]
+
+  3.  update test_table set user_name="kaka" where user_id=20
+
+     - 没有命中行，降级为间隙锁
+       - 没有行锁
+       - 间隙锁，锁住(19,30]
+
+  4.  update test_table set user_name="kaka" where id=19
+
+     - 命中主键（或者唯一键（null值特殊）），降级为行锁
+       - 行锁
+       - 没有间隙锁，没有必要，因为唯一，无论如何，都不会影响这条sql的执行结果
 
 # insert intention locks
 
+- is a type of gap lock set by [`INSERT`](https://dev.mysql.com/doc/refman/8.0/en/insert.html) operations
+  - 插入意向锁，**一种类型**的间隙锁（非间隙锁），使用`insert`语句的时候产生
+- inserting into the same index gap need not wait for each other if they are not inserting at the same position within the gap.
+  - 也是锁区间，但是互相不排斥，只要不是插入同一个**索引位置**
+  - 其实可以认为**行为结果**等同于行锁，如果有间隙锁，等待间隙锁的释放
+
 # auto-inc locks
 
+An `AUTO-INC` lock is a special **table-level lock** taken by transactions inserting into tables with `AUTO_INCREMENT` columns. 
+
+- 表级锁，用于保护有序自增
+- simplest case, if one transaction is inserting values into the table, any other transactions must wait to do their own inserts into that table, so that rows inserted by the first transaction receive consecutive primary key values.
+  - 等待第一个事务获取连续的自增值
+
 # predicate locks for spatial indexes 
+
+空间索引谓词锁（优化空间分析）
+
+# [metadata locks](https://github.com/xxw1754352621/java-dev/blob/master/mysql/InnoDB/MDL.md)
+
+
 
 
 

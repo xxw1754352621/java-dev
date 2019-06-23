@@ -154,6 +154,26 @@ An `AUTO-INC` lock is a special **table-level lock** taken by transactions inser
 
 # [metadata locks](https://github.com/xxw1754352621/java-dev/blob/master/mysql/InnoDB/MDL.md)
 
+元数据锁
+
+#隐式锁和显式锁
+* 显示锁(explicit lock)
+    显示的加锁，在show engine innoDB status 中能够看到  ，会在内存中产生对象，占用内存  
+    eg: select ... for update , select ... lock in share mode   
+* 隐示锁(implicit lock)
+    implicit lock 是在索引中对记录逻辑的加锁，但是实际上不产生锁对象，不占用内存空间  
+    
+* 哪些语句会产生implicit lock 呢？
+   eg: insert into xx values(xx) 
+   eg: update xx set t=t+1 where id = 1 ; 会对辅助索引加implicit lock  
+* implicit lock 在什么情况下会转换成 explicit lock
+  eg： 只有implicit lock 产生冲突的时候，会自动转换成explicit lock,这样做的好处就是降低锁的开销    
+  eg: 比如：我插入了一条记录10，本身这个记录加上implicit lock，如果这时候有人再去更新这条10的记录，那么就会自动转换成explicit lock
+* 数据库怎么知道implicit lock的存在呢？如何实现锁的转化呢？
+  1. 对于聚集索引上面的记录，有db_trx_id,如果该事务id在活跃事务列表中，那么说明还没有提交，那么implicit则存在  
+  2. 对于非聚集索引：由于上面没有事务id，那么可以通过上面的主键id，再通过主键id上面的事务id来判断，不过算法要非常复杂，这里不做介绍
+* 锁升级，锁迁移，锁分裂（页分裂），锁合并
+
 
 
 

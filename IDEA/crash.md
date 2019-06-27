@@ -1,4 +1,4 @@
-# 激活码会失效，目前激活版本为2019.1.3
+# [激活码会失效，目前激活版本为2019.1.3](http://idea.lanyus.com/)
 - 1.Hosts文件添加映射
 0.0.0.0 account.jetbrains.com
 0.0.0.0 www.account.jetbrains.com

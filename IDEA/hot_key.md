@@ -1,0 +1,13 @@
+# **[常用快捷键](https://www.zhihu.com/question/300830746/answer/576510787)**
+- 智能提示 
+  - shift + ctrl + 空格 ：根据上下文智能提示
+- 参数提示
+  - ctrl + p:快速提示方法需要输入的参数
+- 快速完成语句
+  - Ctrl+Shift+Enter
+- Postfix Code
+  - 变量.for 变量.if等 
+- Live Template
+  - 快捷模板
+- Inject language
+  - 编辑json，sql等字符串

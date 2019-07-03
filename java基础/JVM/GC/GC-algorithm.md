@@ -83,7 +83,7 @@
      - 堆区外
        - 永生代-Permanet Generation
        
-  
+    
    - ##### 算法总结
 
      当前商业虚拟机的垃圾收集都采用**分代收集（Generational Collection）算法**，此算法相较于前几种没有什么新的特征，主要思想为：根据对象存活周期的不同将内存划分为几块，一般是把Java堆分为新生代和老年代，这样就可以根据各个年代的特点采用最适合的收集算法：
@@ -94,38 +94,40 @@
    # [常见的垃圾收集器](https://juejin.im/post/5bade237e51d450ea401fd71)
 
    - **Serial收集器（复制算法)**
-  新生代单线程收集器，标记和清理都是单线程，优点是简单高效。是client级别默认的GC方式，可以通过`-XX:+UseSerialGC`来强制指定。
-   
+    新生代单线程收集器，标记和清理都是单线程，优点是简单高效。是client级别默认的GC方式，可以通过`-XX:+UseSerialGC`来强制指定。
 
-   
 
-   
+
+
+
 - **Serial Old收集器(标记-整理算法)**
-   
+  
   老年代单线程收集器，Serial收集器的老年代版本。
-   
+  
 
-   
+  
 
-   
+  
 - **ParNew收集器(停止-复制算法)**　
-   
+  
   新生代收集器，可以认为是Serial收集器的多线程版本,在多核CPU环境下有着比Serial更好的表现。
-   
+  
 
-   
+  
 - **Parallel Scavenge收集器(停止-复制算法)**
-   
+  
   并行收集器，追求高吞吐量，高效利用CPU。吞吐量一般为99%， 吞吐量= 用户线程时间/(用户线程时间+GC线程时间)。适合后台应用等对交互相应要求不高的场景。是server级别默认采用的GC方式，可用`-XX:+UseParallelGC`来强制指定，用`-XX:ParallelGCThreads=4`来指定线程数。
-   
+  
+
+  
+- **Parallel Old收集器(停止-复制算法)**
+  
+     Parallel Scavenge收集器的老年代版本，并行收集器，吞吐量优先。
 
    
-- **Parallel Old收集器(停止-复制算法)**
-   
-     Parallel Scavenge收集器的老年代版本，并行收集器，吞吐量优先。
-   
-   
-   
+
    - **CMS(Concurrent Mark Sweep)收集器（标记-清理算法）**
    
      高并发、低停顿，追求最短GC回收停顿时间，cpu占用比较高，响应时间快，停顿时间短，多核cpu 追求高响应时间的选择。
+
+- 参考：[垃圾回收器](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/JVM/GC/garbage-collector.md)

@@ -17,27 +17,33 @@
 # haproxy
 
 # java基础
+  - [JVM](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/JVM)
+      - [垃圾回收](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/JVM/GC)
   - [数据结构与算法](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95)
     - [排序算法](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
       - [Timsort算法](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/Timsort%E7%AE%97%E6%B3%95.md)
-
   - [集合](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88)
     - [ConcurrentHashMap常用的get和put方法](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/Map/ConcurrentHashMap%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.md)
     - [集合框架](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.md)
-    
   - [线程](https://github.com/xxw1754352621/java-dev/tree/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B)
     - [监控任务的生命周期](https://github.com/xxw1754352621/java-dev/blob/master/java%E5%9F%BA%E7%A1%80/%E7%BA%BF%E7%A8%8B/%E7%9B%91%E6%8E%A7%E4%BB%BB%E5%8A%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
 # kafka
   - [consumer](https://github.com/xxw1754352621/java-dev/blob/master/kafka/consumer)
     - [消费者](https://github.com/xxw1754352621/java-dev/blob/master/kafka/consumer/consume.md)
     - [消费配置](https://github.com/xxw1754352621/java-dev/blob/master/kafka/consumer/config.md)
+- [服务端](https://github.com/xxw1754352621/java-dev/tree/master/kafka/broker)
 # mongodb
 
 # mysql
 
+- [innodb](https://github.com/xxw1754352621/java-dev/tree/master/mysql/InnoDB)
+  - [index](https://github.com/xxw1754352621/java-dev/tree/master/mysql/InnoDB/index.md)
+  - [locks](https://github.com/xxw1754352621/java-dev/tree/master/mysql/InnoDB/locks.md)
+
 # nginx
 
 # rabbitmq
+  - [生产者](https://github.com/xxw1754352621/java-dev/tree/master/rabbitmq/product)
   - [consumer](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/consumer)
     - [消费过程](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/consumer/consume.md)
     - [消费配置](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/consumer/properties.md)
@@ -45,7 +51,8 @@
     -  [rabbitmq的存储](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/store/persistent.md)
   - [framework](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework)
     - [mnesia](https://github.com/xxw1754352621/java-dev/blob/master/rabbitmq/framework/mnesia.md)
-  
+- [集群](https://github.com/xxw1754352621/java-dev/tree/master/rabbitmq/clustering)
+- [队列](https://github.com/xxw1754352621/java-dev/tree/master/rabbitmq/queue)
   
 
 # redis

@@ -13,7 +13,10 @@
 3.**Minor** GC和**Full** GC（Major GC）
 
 - Full GC
+  
   - 指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC（但非绝对的，在Parallel Scavenge收集器的收集策略里就有直接进行Major GC的策略选择过程）。Major GC的速度一般会比Minor GC慢10倍以上。
+  
+    
 
 # 新生代收集器
 
@@ -70,11 +73,11 @@ CMS（**Concurrent Mark Sweep**）收集器（JDK1.5）
 
 # 跨代收集器
 
-G1（JDK1.8）
+G1（更好支持大于4G堆内存在JDK 7 u4引入）
 
 - 标记-整理+复制算法
-
 - **面向服务端应用**
+- [G1没有fullGC概念](http://youzhixueyuan.com/the-difference-between-minor-gc-major-gc-full-gc.html)，需要fullGC时，调用serialOldGC进行**全堆**扫描（包括eden、survivor、o、perm）。
 - 特点
   - **并行与并发** G1 能充分利用多CPU、多核环境下的硬件优势，使用多个CPU来缩短“Stop The World”停顿时间，部分其他收集器原本需要停顿Java线程执行的GC动作，G1收集器仍然可以通过并发的方式让Java程序继续执行。
   - **分代收集** 与其他收集器一样，分代概念在G1中依然得以保留。虽然G1可以不需要其他收集器配合就能独立管理整个GC堆，但它能够采用不同方式去处理新创建的对象和已存活一段时间、熬过多次GC的旧对象来获取更好的收集效果。
@@ -89,6 +92,11 @@ G1（JDK1.8）
 - **读屏障Load Barrier** 
   - 基于着色指针
   - 屏障就会先把指针更新为有效地址再返回
+
+jdk1.8.0_102，测试默认垃圾收集器为：**PS MarkSweep** 和 **PS Scavenge**。 也就是说Java8的默认并不是G1
+
+- -XX:+PrintCommandLineFlagsjvm参数可查看默认设置收集器类型
+- -XX:+PrintGCDetails亦可通过打印的GC日志的新生代、老年代名称判断
 
 
 

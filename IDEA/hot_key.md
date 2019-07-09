@@ -1,4 +1,6 @@
 # **[常用快捷键](https://www.zhihu.com/question/300830746/answer/576510787)**
+- 定位下一个代码改动的地方
+  - ctrl+alt+shift+ :arrow_up:
 - 智能提示 
   - shift + ctrl + 空格 ：根据上下文智能提示
 - 参数提示

@@ -30,14 +30,28 @@
 
 
 
-- sqlsessionfactory
+- MybatisAutoConfiguration
 
-  - ```java
+  - 创建AutoConfiguredMapperScannerRegistrar
+
+    - ClassPathMapperScanner
+      - Searching for mappers annotated with @Mapper
+      - Creating MapperFactoryBean with name 'indexTestMapper' and 'com.example.rabbitmq.mybatis.IndexTestMapper' mapperInterface
+      - Enabling autowire by type for MapperFactoryBean with name 'indexTestMapper'
+
+  - 创建SqlSessionFactory
+
+    - ###### 创建SqlSessionFactoryBean来创建SqlSessionFactory
+
+    - ```java
       @Override
       public void afterPropertiesSet() throws Exception {
         this.sqlSessionFactory = buildSqlSessionFactory();
       }
-    ```
+      ```
+
+      - 调用org.mybatis.spring.SqlSessionFactoryBean#afterPropertiesSet方法创建 SqlSessionFactory
+        - 说明其他属性设置完后，设置属性sqlSessionFactory
 
 - sqlSession
 
@@ -56,9 +70,50 @@
     }
   ```
 
-  
 
-- 
+
+- MapperFactoryBean（创建的代理，控制开放和关闭 session）
+
+  - SqlSessionDaoSupport
+
+  - ```java
+      @Override
+      public T getObject() throws Exception {
+        return getSqlSession().getMapper(this.mapperInterface);
+      }
+    ```
+
+    - DefaultSqlSession
+
+      - MapperRegistry
+
+        - org.apache.ibatis.binding.MapperRegistry#getMapper
+
+      - MapperProxyFactory
+
+        - ```java
+          public T newInstance(SqlSession sqlSession) {  
+              final MapperProxy<T> mapperProxy = new MapperProxy<T>(sqlSession, mapperInterface, methodCache);  
+              return newInstance(mapperProxy);
+          }
+          此方法实现代理sqlsession执行真正的sql语句
+          ```
+
+- SqlSessionUtils
+
+  - Creating a new SqlSession
+  - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7babed9e] was not registered for synchronization because synchronization is not active
+  - Closing non transactional SqlSession
+
+- LoggingCache
+  - Cache Hit Ratio [com.example.rabbitmq.mybatis.IndexTestMapper]: 0.0
+- HikariDataSource
+  - HikariPool-1 - Starting...
+  - HikariPool-1 - Start completed.
+- SpringManagedTransaction
+  - JDBC Connection [HikariProxyConnection@326802793 wrapping com.mysql.cj.jdbc.ConnectionImpl@12faeada] will not be managed by Spring
+- SqlSessionUtils
+  - Closing non transactional SqlSession
 
 - 读取配置
 

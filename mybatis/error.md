@@ -23,3 +23,15 @@ org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.i
 at org.apache.ibatis.cache.decorators.SerializedCache.serialize(SerializedCache.java:97)
 ```
 
+- 长时间断开连接
+
+```
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+
+Caused by: java.net.SocketException: Software caused connection abort: recv failed
+
+```
+
+

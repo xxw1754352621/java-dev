@@ -74,4 +74,4 @@
       
       - 票据之间的关系如图：
       
-      - ![9](https://github.com/xxw1754352621/java-dev/img/9.png)
+      - ![9](https://github.com/xxw1754352621/java-dev/blob/master/img/9.png)

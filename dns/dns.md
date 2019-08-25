@@ -18,7 +18,7 @@
 
 图片说明如下:
 
-![7](https://github.com/xxw1754352621/java-dev/img/7.png)
+![7](https://github.com/xxw1754352621/java-dev/blob/master/img/7.png)
 
 
 
@@ -46,4 +46,4 @@
 
 如图：
 
-![8](https://github.com/xxw1754352621/java-dev/img/8.png)
+![8](https://github.com/xxw1754352621/java-dev/blob/master/img/8.png)

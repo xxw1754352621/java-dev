@@ -18,21 +18,18 @@
 
     - sso服务器（包含cas服务器 + 统一的登录页面）
   - servic应用服务器
-    - 浏览器的
-
-  - 票据
-
+    
+- 浏览器的
+    
+- 票据
+  
     - TGT：Ticket Grangting Ticket 
   
       TGT 是 CAS 为用户签发的登录票据，拥有了 TGT，用户就可以证明自己在 CAS 成功登录过。TGT 封装了 Cookie 值以及此 Cookie 值对应的用户信息。当 HTTP 请求到来时，CAS 以此 Cookie 值（TGC）为 key 查询缓存中有无 TGT ，如果有的话，则相信用户已登录过。
   
-      
+    - TGC：Ticket Granting Cookie
   
-  - TGC：Ticket Granting Cookie
-  
-      CAS Server 生成TGT放入自己的 Session 中，而 TGC 就是这个 Session 的唯一标识（SessionId），以 Cookie 形式放到浏览器端，是 CAS Server 用来明确用户身份的凭证。
-  
-      
+        CAS Server 生成TGT放入自己的 Session 中，而 TGC 就是这个 Session 的唯一标识（SessionId），以 Cookie 形式放到浏览器端，是 CAS Server 用来明确用户身份的凭证。
   
     - ST：Service Ticket 
   

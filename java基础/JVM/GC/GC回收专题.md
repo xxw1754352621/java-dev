@@ -63,3 +63,258 @@
   ```
 
   
+  
+  {
+    "steps": [
+      {
+        "join_preparation": {
+          "select#": 1,
+          "steps": [
+            {
+              "expanded_query": "/* select#1 */ select `parcel`.`fpx_tracking_no` AS `fpx_tracking_no`,`parcel`.`create_time` AS `create_time` from `parcel` where (`parcel`.`create_time` > '2019-09-09') order by `parcel`.`pickup_time`"
+            }
+          ]
+        }
+      },
+      {
+        "join_optimization": {
+          "select#": 1,
+          "steps": [
+            {
+              "condition_processing": {
+                "condition": "WHERE",
+                "original_condition": "(`parcel`.`create_time` > '2019-09-09')",
+                "steps": [
+                  {
+                    "transformation": "equality_propagation",
+                    "resulting_condition": "(`parcel`.`create_time` > '2019-09-09')"
+                  },
+                  {
+                    "transformation": "constant_propagation",
+                    "resulting_condition": "(`parcel`.`create_time` > '2019-09-09')"
+                  },
+                  {
+                    "transformation": "trivial_condition_removal",
+                    "resulting_condition": "(`parcel`.`create_time` > '2019-09-09')"
+                  }
+                ]
+              }
+            },
+            {
+              "substitute_generated_columns": {
+              }
+            },
+            {
+              "table_dependencies": [
+                {
+                  "table": "`parcel`",
+                  "row_may_be_null": false,
+                  "map_bit": 0,
+                  "depends_on_map_bits": [
+                  ]
+                }
+              ]
+            },
+            {
+              "ref_optimizer_key_uses": [
+              ]
+            },
+            {
+              "rows_estimation": [
+                {
+                  "table": "`parcel`",
+                  "range_analysis": {
+                    "table_scan": {
+                      "rows": 1277,
+                      "cost": 284.5
+                    },
+                    "potential_range_indexes": [
+                      {
+                        "index": "PRIMARY",
+                        "usable": false,
+                        "cause": "not_applicable"
+                      },
+                      {
+                        "index": "uniq_fpx_tracking_no_1",
+                        "usable": false,
+                        "cause": "not_applicable"
+                      },
+                      {
+                        "index": "idx_create_time",
+                        "usable": true,
+                        "key_parts": [
+                          "create_time",
+                          "id"
+                        ]
+                      },
+                      {
+                        "index": "idx_parcel_status",
+                        "usable": false,
+                        "cause": "not_applicable"
+                      },
+                      {
+                        "index": "idx_courier_station_code",
+                        "usable": false,
+                        "cause": "not_applicable"
+                      },
+                      {
+                        "index": "idx_pickup_time",
+                        "usable": false,
+                        "cause": "not_applicable"
+                      }
+                    ],
+                    "setup_range_conditions": [
+                    ],
+                    "group_index_range": {
+                      "chosen": false,
+                      "cause": "not_group_by_or_distinct"
+                    },
+                    "analyzing_range_alternatives": {
+                      "range_scan_alternatives": [
+                        {
+                          "index": "idx_create_time",
+                          "ranges": [
+                            "0x5d752580 < create_time"
+                          ],
+                          "index_dives_for_eq_ranges": true,
+                          "rowid_ordered": false,
+                          "using_mrr": false,
+                          "index_only": false,
+                          "rows": 156,
+                          "cost": 188.21,
+                          "chosen": true
+                        }
+                      ],
+                      "analyzing_roworder_intersect": {
+                        "usable": false,
+                        "cause": "too_few_roworder_scans"
+                      }
+                    },
+                    "chosen_range_access_summary": {
+                      "range_access_plan": {
+                        "type": "range_scan",
+                        "index": "idx_create_time",
+                        "rows": 156,
+                        "ranges": [
+                          "0x5d752580 < create_time"
+                        ]
+                      },
+                      "rows_for_plan": 156,
+                      "cost_for_plan": 188.21,
+                      "chosen": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "considered_execution_plans": [
+                {
+                  "plan_prefix": [
+                  ],
+                  "table": "`parcel`",
+                  "best_access_path": {
+                    "considered_access_paths": [
+                      {
+                        "rows_to_scan": 156,
+                        "access_type": "range",
+                        "range_details": {
+                          "used_index": "idx_create_time"
+                        },
+                        "resulting_rows": 156,
+                        "cost": 219.41,
+                        "chosen": true,
+                        "use_tmp_table": true
+                      }
+                    ]
+                  },
+                  "condition_filtering_pct": 100,
+                  "rows_for_plan": 156,
+                  "cost_for_plan": 219.41,
+                  "sort_cost": 156,
+                  "new_cost_for_plan": 375.41,
+                  "chosen": true
+                }
+              ]
+            },
+            {
+              "attaching_conditions_to_tables": {
+                "original_condition": "(`parcel`.`create_time` > '2019-09-09')",
+                "attached_conditions_computation": [
+                ],
+                "attached_conditions_summary": [
+                  {
+                    "table": "`parcel`",
+                    "attached": "(`parcel`.`create_time` > '2019-09-09')"
+                  }
+                ]
+              }
+            },
+            {
+              "clause_processing": {
+                "clause": "ORDER BY",
+                "original_clause": "`parcel`.`pickup_time`",
+                "items": [
+                  {
+                    "item": "`parcel`.`pickup_time`"
+                  }
+                ],
+                "resulting_clause_is_simple": true,
+                "resulting_clause": "`parcel`.`pickup_time`"
+              }
+            },
+            {
+              "reconsidering_access_paths_for_index_ordering": {
+                "clause": "ORDER BY",
+                "index_order_summary": {
+                  "table": "`parcel`",
+                  "index_provides_order": false,
+                  "order_direction": "undefined",
+                  "index": "idx_create_time",
+                  "plan_changed": false
+                }
+              }
+            },
+            {
+              "refine_plan": [
+                {
+                  "table": "`parcel`",
+                  "pushed_index_condition": "(`parcel`.`create_time` > '2019-09-09')",
+                  "table_condition_attached": null
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "join_execution": {
+          "select#": 1,
+          "steps": [
+            {
+              "filesort_information": [
+                {
+                  "direction": "asc",
+                  "table": "`parcel`",
+                  "field": "pickup_time"
+                }
+              ],
+              "filesort_priority_queue_optimization": {
+                "usable": false,
+                "cause": "not applicable (no LIMIT)"
+              },
+              "filesort_execution": [
+              ],
+              "filesort_summary": {
+                "rows": 156,
+                "examined_rows": 156,
+                "number_of_tmp_files": 0,
+                "sort_buffer_size": 262128,
+                "sort_mode": "<sort_key, packed_additional_fields>"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }

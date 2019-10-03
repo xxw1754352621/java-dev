@@ -1,4 +1,4 @@
-# [deadlock](http://hedengcheng.com/?p=771#_Toc374698318)
+# deadlock
 
 ## [原子操作的【一阶段封锁】 和 事务下的【两段锁】](https://tech.meituan.com/2014/08/20/innodb-lock.html)
 
@@ -67,6 +67,13 @@ Serialable级别
 
 - 网上文章因版本不同，请注意
 
+- 常用操作
+
+  - show engine innodb status，查看引擎状态，死锁信息
+  - SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;查看当前事务
+  - set global innodb_status_output=ON; // 可选。将监控输出到log_error输出中，15秒刷新一次
+  - set global innodb_status_output_locks=ON; // 输出的内容包含锁的详细信息
+
 - 等待该行 的 **X锁**释放超时，**Lock wait timeout exceeded; try restarting transaction** 
 
   - 模拟01
@@ -81,16 +88,18 @@ Serialable级别
 
 - 死锁，**Deadlock found when trying to get lock; try restarting transaction** 
 
-  - 主要原因：**S锁和意向锁，间隙锁，这三种兼容性锁**
+  - 主要原因：
 
-    - #### 意向锁 Intention Locks
+    - **S锁，间隙锁，这两种种兼容性锁**
 
-      - To make locking at multiple granularity levels practical, `InnoDB` uses [intention locks](https://dev.mysql.com/doc/refman/5.5/en/glossary.html#glos_intention_lock). Intention locks are table-level locks that indicate which type of lock (shared or exclusive) a transaction requires later for a row in a table.
+      - #### 意向锁 Intention Locks
 
-    - 意向gap锁 insert intention lock（不同事务兼容）
+        - To make locking at multiple granularity levels practical, `InnoDB` uses [intention locks](https://dev.mysql.com/doc/refman/5.5/en/glossary.html#glos_intention_lock). Intention locks are table-level locks that indicate which type of lock (shared or exclusive) a transaction requires later for a row in a table.
 
-      - An insert intention lock is a type of gap lock set 
-      - The transaction takes an insert intention lock while it **waits to obtain an exclusive lock.**
+      - 意向gap锁 **insert** intention lock（不同事务兼容）
+
+        - An insert intention lock is a type of gap lock set 
+        - The transaction takes an insert intention lock while it **waits to obtain an exclusive lock.**
 
   - 对该行都获取了兼容性锁，在获取X的时候，互相等待对象释放 **兼容性锁**
 
@@ -112,15 +121,34 @@ Serialable级别
       - [唯一性检查](https://yq.aliyun.com/articles/198655)
       - [其他](https://cloud.tencent.com/developer/article/1056372)
     - 模拟04：
-      - 并发插入
+      - 等待排他锁（相同表记录行锁冲突）
+
+        - 线程问题，APP两次传的参数，都包含唯一值a和b，但是顺序不一样导致
+
         -  事务1：INSERT INTO test(name)VALUE(15);
         -  事务2：INSERT INTO test(name)VALUE(17);
         -  事务1：INSERT INTO test(name)VALUE(17);等待 2 的排他锁
         -  事务2：INSERT INTO test(name)VALUE(15);等待1 的排他锁，**检查到死锁**
-      - 并发插入
+
+      - nest-key锁
         -  事务1：INSERT INTO test(name)VALUES(15)，(15);第二次，产生nest-key锁（10,15】
         -  事务2：INSERT INTO test(name)VALUE(17)，(17);第二次，产生nest-key锁（17，+00】
         -  事务1：INSERT INTO test(name)VALUE(18);等待 2 的nest-key锁
         -  事务2：INSERT INTO test(name)VALUE(14);等待1 的nest-key锁
+
+      - ### gap锁冲突
+
+      - 
     - 方案：
+
       - 增加delete字段，不直接删除
+      - 对唯一索引和主键索引操作，降低 **临建锁 和 间隙锁** 的使用
+      - 两次作业的批量字段顺序【1,2,3】和【1,2,3】保持一致
+
+  
+
+[^1]: <阿里云死锁问题分析> <https://yq.aliyun.com/articles/5533?&utm_source=qq#>
+[^2]: <[何登成](http://hedengcheng.com/) http://hedengcheng.com/?p=844>
+[^3]: <[何登成](http://hedengcheng.com/) http://hedengcheng.com/?p=771>
+[^4]: <<https://keithlan.github.io/2017/06/21/innodb_locks_algorithms/>>
+
